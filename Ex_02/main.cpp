@@ -8,6 +8,14 @@ inline double calc_volume(double radius) {
     return (4.0 / 3.0 * 3.14 * pow(radius, 3));
 }
 
+bool pw_check(string pw) {
+    for (auto& s : pw) {
+        if ((s >= 48 && s <= 57) && (s >= 'a' && s <= 'z') && (s >= 'A' && s <= 'Z'))
+            return true;
+        else return false;
+    }
+}
+
 int main() {
 
     // p.160, 2번 문제
@@ -36,6 +44,14 @@ int main() {
 
     // p.164, 13번 문제
     string password;
+
     cout << "암호를 입력하시오: ";
     cin >> password;
+
+    bool check = pw_check(password);
+    if (check == true)
+        cout << "안전합니다." << endl;
+    else
+        cout << "안전하지 않습니다." << endl;
+
 }

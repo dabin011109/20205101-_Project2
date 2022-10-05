@@ -35,39 +35,29 @@ int main() {
 	// p.119, 16¹ø ¹®Á¦
 	int cash = 50, goal = 250;
 	int bets = 0, win = 0;
-	bool result;
-	int wins = 0, total = 0;
+
+	srand(time(NULL));
 
 	cout << "ÃÊ±â ±Ý¾× $" << cash << endl;
 	cout << "¸ñÇ¥ ±Ý¾× $" << goal << endl;
 
-	srand((unsigned int)time(NULL));
-
-	for (int game = 0; game < 1000; game++)
-	{
-		while (true)
-		{
+	for (int game = 0; game < 1000; game++) {
+		while (true) {
 			bets++;
-			if ((double)rand() / RAND_MAX < 0.5)
-			{
-				cash++;
-				win++;
-			}
+			if ((double)rand() / RAND_MAX < 0.5) cash++;
+
 			else cash--;
 
-			if (cash <= 0)
-			{
-				result = false;
+			if (cash == goal) {
+				win++;
 				break;
 			}
-			if (cash >= goal) {
-				result = true;
-				break;
-			}
+			else if (cash == 0)  break;
+
 		}
-		if (result == true) wins++;
 	}
-	cout << "1000 ÁßÀÇ " << wins << "¹ø ½Â¸®" << endl;
-	cout << "ÀÌ±ä È®·ü = " << wins / 1000 * 100 << endl;
-	cout << "Æò±Õ ¹èÆÃ È½¼ö = " << bets / 1000.0 << endl;
+
+	cout << "1000 ÁßÀÇ " << win << "¹ø ½Â¸®" << endl;
+	cout << "ÀÌ±ä È®·ü = " << (double) win / 1000.0 * 100.0 << endl;
+	cout << "Æò±Õ ¹èÆÃ È½¼ö = " << (double) bets / 1000 << endl;
 }
