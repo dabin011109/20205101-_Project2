@@ -53,8 +53,7 @@ public:
 	// 단항연산자 +
 	Vector operator+() const
 	{
-		return Vector{ +x
-			, +y, +z };
+		return Vector{ +x, +y, +z };
 	}
 
 	// 이항연산자 -
@@ -67,6 +66,23 @@ public:
 	Vector operator/(float n) const
 	{
 		return Vector{ x / n, y / n, z / n };
+	}
+
+	// 전위연산자 --
+	Vector& operator--()
+	{
+		--x;
+		--y;
+		--z;
+		return *this;
+	}
+
+	// 후위연산자 --
+	Vector& operator--(int)
+	{
+		Vector temp = *this;
+		--(*this);
+		return temp;
 	}
 
 	void print()
@@ -118,4 +134,13 @@ int main()
 	// 이항연산자 / 확인
 	Vector v10 = v5 / 3.0f;
 	v10.print();
+
+	// 전위연산자 -- 확인
+	Vector v11 = --v1;
+	v11.print();
+	
+	// 후위연산자 -- 확인
+	Vector v12 = v1--;
+	v12.print();
+	v1.print(); // v1을 통해 후위연산 확인
 }
